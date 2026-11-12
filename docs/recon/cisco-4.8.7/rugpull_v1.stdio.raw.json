@@ -1,0 +1,32 @@
+[
+  {
+    "status": "completed",
+    "is_safe": true,
+    "findings": {
+      "yara_analyzer": {
+        "severity": "SAFE",
+        "threat_names": [],
+        "threat_summary": "No threats detected",
+        "total_findings": 0
+      }
+    },
+    "tool_name": "get_fact",
+    "tool_description": "Return a fun fact about a topic.",
+    "item_type": "tool"
+  },
+  {
+    "status": "completed",
+    "is_safe": true,
+    "findings": {
+      "yara_analyzer": {
+        "severity": "SAFE",
+        "threat_names": [],
+        "threat_summary": "No threats detected",
+        "total_findings": 0
+      }
+    },
+    "tool_name": "word_count",
+    "tool_description": "Count the words in a piece of text.",
+    "item_type": "tool"
+  }
+]

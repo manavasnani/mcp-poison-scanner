@@ -1,0 +1,24 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+.env
+benchmarks/datasets/raw/
+
+# Benchmark answer cache: holds dataset text
+benchmarks/results/cache/
+
+# Kept on the author's machine only
+/MCP Poison Scanner Build Plan.md
+/docs/PLAN.md
+/docs/RESUME.md
+/docs/MCP-Poison-Scanner-Guide.pdf
+/docs/guide/
+
+# Working files: snapshots and lockfiles made while trying the scanner
+/snapshots/
+/mcp-poison.lock.json

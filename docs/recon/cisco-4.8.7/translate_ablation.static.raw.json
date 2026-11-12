@@ -1,0 +1,131 @@
+[
+  {
+    "status": "completed",
+    "is_safe": true,
+    "findings": {
+      "yara_analyzer": {
+        "severity": "SAFE",
+        "threat_names": [],
+        "threat_summary": "No threats detected",
+        "total_findings": 0
+      }
+    },
+    "tool_name": "translate_only_target",
+    "tool_description": "",
+    "item_type": "tool"
+  },
+  {
+    "status": "completed",
+    "is_safe": true,
+    "findings": {
+      "yara_analyzer": {
+        "severity": "SAFE",
+        "threat_names": [],
+        "threat_summary": "No threats detected",
+        "total_findings": 0
+      }
+    },
+    "tool_name": "translate_only_context",
+    "tool_description": "",
+    "item_type": "tool"
+  },
+  {
+    "status": "completed",
+    "is_safe": true,
+    "findings": {
+      "yara_analyzer": {
+        "severity": "SAFE",
+        "threat_names": [],
+        "threat_summary": "No threats detected",
+        "total_findings": 0
+      }
+    },
+    "tool_name": "translate_only_mode",
+    "tool_description": "",
+    "item_type": "tool"
+  },
+  {
+    "status": "completed",
+    "is_safe": true,
+    "findings": {
+      "yara_analyzer": {
+        "severity": "SAFE",
+        "threat_names": [],
+        "threat_summary": "No threats detected",
+        "total_findings": 0
+      }
+    },
+    "tool_name": "translate_only_target_context",
+    "tool_description": "",
+    "item_type": "tool"
+  },
+  {
+    "status": "completed",
+    "is_safe": true,
+    "findings": {
+      "yara_analyzer": {
+        "severity": "SAFE",
+        "threat_names": [],
+        "threat_summary": "No threats detected",
+        "total_findings": 0
+      }
+    },
+    "tool_name": "translate_only_target_mode",
+    "tool_description": "",
+    "item_type": "tool"
+  },
+  {
+    "status": "completed",
+    "is_safe": false,
+    "findings": {
+      "yara_analyzer": {
+        "severity": "HIGH",
+        "threat_names": [
+          "CREDENTIAL HARVESTING"
+        ],
+        "threat_summary": "Detected 1 threat: credential harvesting",
+        "total_findings": 1,
+        "mcp_taxonomies": [
+          {
+            "scanner_category": "SECURITY VIOLATION",
+            "aitech": "AITech-8.2",
+            "aitech_name": "Data Exfiltration / Exposure",
+            "aisubtech": "AISubtech-8.2.3",
+            "aisubtech_name": "Data Exfiltration via Agent Tooling",
+            "description": "Unintentional and/or unauthorized exposure or exfiltration of sensitive information, such as private or sensitive data, intellectual property, and proprietary algorithms through exploitation of agent tools, integrations, or capabilities, where the agent is manipulated to use legitimate tools for malicious data exfiltration purposes."
+          }
+        ]
+      }
+    },
+    "tool_name": "translate_only_context_mode",
+    "tool_description": "",
+    "item_type": "tool"
+  },
+  {
+    "status": "completed",
+    "is_safe": false,
+    "findings": {
+      "yara_analyzer": {
+        "severity": "HIGH",
+        "threat_names": [
+          "CREDENTIAL HARVESTING"
+        ],
+        "threat_summary": "Detected 1 threat: credential harvesting",
+        "total_findings": 1,
+        "mcp_taxonomies": [
+          {
+            "scanner_category": "SECURITY VIOLATION",
+            "aitech": "AITech-8.2",
+            "aitech_name": "Data Exfiltration / Exposure",
+            "aisubtech": "AISubtech-8.2.3",
+            "aisubtech_name": "Data Exfiltration via Agent Tooling",
+            "description": "Unintentional and/or unauthorized exposure or exfiltration of sensitive information, such as private or sensitive data, intellectual property, and proprietary algorithms through exploitation of agent tools, integrations, or capabilities, where the agent is manipulated to use legitimate tools for malicious data exfiltration purposes."
+          }
+        ]
+      }
+    },
+    "tool_name": "translate_full_no_outputschema",
+    "tool_description": "",
+    "item_type": "tool"
+  }
+]

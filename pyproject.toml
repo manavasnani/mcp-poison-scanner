@@ -1,0 +1,53 @@
+[project]
+name = "mcp-poison-scanner"
+version = "0.1.0"
+description = "Local scanner for poisoned MCP server metadata, with a reproducible benchmark."
+readme = "README.md"
+authors = [
+    { name = "Manav Asnani" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=2.4.0",
+    "mcp>=2.3.0",
+    "pydantic>=2.14.2",
+    "typer>=0.27.3",
+]
+
+[project.scripts]
+mcp-poison-scanner = "scanner.cli:app"
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "scanner"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-exclude = [".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "SIM", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003"]  # fixtures contain intentional confusable/invisible chars
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S603"]
+"tests/test_benchmark.py" = ["E501"]  # sample dataset text is clearer on one line
+"tests/test_signin.py" = ["S105", "S106"]  # made-up tokens issued by the in-memory sign-in service
+"benchmarks/**" = ["E501", "S101", "S607"]  # long report strings; asserts validate generated data
+"fixtures/**" = ["ARG001"]
+"docs/**" = ["E501", "UP031"]  # long sentences of guide text, with a font name substituted in

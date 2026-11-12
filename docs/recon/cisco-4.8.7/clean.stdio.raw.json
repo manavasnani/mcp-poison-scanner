@@ -1,0 +1,47 @@
+[
+  {
+    "status": "completed",
+    "is_safe": true,
+    "findings": {
+      "yara_analyzer": {
+        "severity": "SAFE",
+        "threat_names": [],
+        "threat_summary": "No threats detected",
+        "total_findings": 0
+      }
+    },
+    "tool_name": "add_note",
+    "tool_description": "Save a note under a title. Overwrites any note with the same title.",
+    "item_type": "tool"
+  },
+  {
+    "status": "completed",
+    "is_safe": true,
+    "findings": {
+      "yara_analyzer": {
+        "severity": "SAFE",
+        "threat_names": [],
+        "threat_summary": "No threats detected",
+        "total_findings": 0
+      }
+    },
+    "tool_name": "search_notes",
+    "tool_description": "Return titles of notes that contain the query, case-insensitive.",
+    "item_type": "tool"
+  },
+  {
+    "status": "completed",
+    "is_safe": true,
+    "findings": {
+      "yara_analyzer": {
+        "severity": "SAFE",
+        "threat_names": [],
+        "threat_summary": "No threats detected",
+        "total_findings": 0
+      }
+    },
+    "tool_name": "format_note",
+    "tool_description": "Render a saved note in the chosen format.",
+    "item_type": "tool"
+  }
+]

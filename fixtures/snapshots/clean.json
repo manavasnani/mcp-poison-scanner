@@ -1,0 +1,162 @@
+{
+  "format_version": 1,
+  "server_name": "clean",
+  "source": "stdio",
+  "server_info": {
+    "name": "fixture-clean",
+    "version": "1.0.0"
+  },
+  "instructions": "A small note-taking server. Notes are kept in memory and lost on restart.",
+  "tools": [
+    {
+      "name": "add_note",
+      "description": "Save a note under a title. Overwrites any note with the same title.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Short title for the note.",
+            "title": "Title",
+            "type": "string"
+          },
+          "body": {
+            "description": "Text of the note.",
+            "title": "Body",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "body"
+        ],
+        "title": "add_noteArguments"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "add_noteOutput",
+        "type": "object"
+      }
+    },
+    {
+      "name": "search_notes",
+      "description": "Return titles of notes that contain the query, case-insensitive.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "description": "Words to look for in note titles and bodies.",
+            "title": "Query",
+            "type": "string"
+          },
+          "limit": {
+            "default": 10,
+            "description": "Maximum number of results.",
+            "maximum": 50,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "search_notesArguments"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Result",
+            "type": "array"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "search_notesOutput",
+        "type": "object"
+      }
+    },
+    {
+      "name": "format_note",
+      "description": "Render a saved note in the chosen format.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Title of an existing note.",
+            "title": "Title",
+            "type": "string"
+          },
+          "style": {
+            "default": "plain",
+            "description": "Output format.",
+            "enum": [
+              "plain",
+              "markdown",
+              "html"
+            ],
+            "title": "Style",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "title": "format_noteArguments"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "format_noteOutput",
+        "type": "object"
+      }
+    }
+  ],
+  "prompts": [
+    {
+      "name": "summarize_note",
+      "description": "Ask the model to summarise one note in three bullet points.",
+      "arguments": [
+        {
+          "name": "title",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "name": "notes_index",
+      "uri": "notes://index",
+      "description": "List of all note titles, one per line.",
+      "mimeType": "text/plain"
+    }
+  ],
+  "resource_templates": [
+    {
+      "name": "note_body",
+      "uriTemplate": "notes://{title}",
+      "description": "The body of a single note.",
+      "mimeType": "text/plain"
+    }
+  ],
+  "errors": []
+}
