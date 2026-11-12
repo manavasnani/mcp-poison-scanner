@@ -5,6 +5,7 @@ image from ``docker/python-mcp.Dockerfile`` has been built as ``mcp-scan-python`
 and it launches only this repo's own fixture server.
 """
 
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -142,14 +143,19 @@ def test_preflight_reports_a_hung_docker(monkeypatch):
 runner = CliRunner()
 
 
+def plain(text: str) -> str:
+    """Usage errors are drawn in a coloured box on CI; drop the colour codes before looking for words."""
+    return re.sub(chr(27) + r"\[[0-9;]*m", "", text)
+
+
 def test_cli_rejects_sandbox_and_unsafe_together():
     result = runner.invoke(app, ["scan", "--sandbox-image", IMAGE, "--unsafe-local", "--", "python", "x.py"])
-    assert result.exit_code != 0 and "not both" in result.output
+    assert result.exit_code != 0 and "not both" in plain(result.output)
 
 
 def test_cli_rejects_mount_without_sandbox(tmp_path):
     result = runner.invoke(app, ["scan", "--mount", str(tmp_path), "--unsafe-local", "--", "python", "x.py"])
-    assert result.exit_code != 0 and "--sandbox-image" in result.output
+    assert result.exit_code != 0 and "--sandbox-image" in plain(result.output)
 
 
 def test_cli_reports_sandbox_problems(monkeypatch):
