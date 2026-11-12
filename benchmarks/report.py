@@ -77,11 +77,11 @@ def build_flaggers(runs: dict[str, dict[str, Any]]) -> list[Flagger]:
         )
 
     if "static" in runs:
-        rows.append(("Ours, static rules (any severity)", of("static")))
-        rows.append(("Ours, static rules (high only)", of("static", "high")))
+        rows.append(("My scanner, static rules (any severity)", of("static")))
+        rows.append(("My scanner, static rules (high only)", of("static", "high")))
     passes = sorted(name for name in runs if name.startswith("judge-pass"))
     for name in passes:
-        rows.append((f"Ours, judge only ({name.removeprefix('judge-')})", of(name)))
+        rows.append((f"My scanner, judge only ({name.removeprefix('judge-')})", of(name)))
     if "static" in runs and passes:
         static, judged = of("static"), of(passes[0])
 
@@ -89,7 +89,7 @@ def build_flaggers(runs: dict[str, dict[str, Any]]) -> list[Flagger]:
             a, b = static(cid), judged(cid)
             return None if a is None or b is None else a or b
 
-        rows.append((f"Ours, static + judge ({passes[0].removeprefix('judge-')})", either))
+        rows.append((f"My scanner, static + judge ({passes[0].removeprefix('judge-')})", either))
     for name in sorted(runs):
         if name.startswith("cisco-"):
             settings = runs[name]["settings"]
@@ -241,8 +241,8 @@ def render_tuning(cases: list[Case], before: dict[str, Any], after: dict[str, An
         "",
         "## Static rules before and after tuning",
         "",
-        "The rules were changed once after the first published run (see benchmarks/README.md for what and why).",
-        "MCPTox was split in two by a hash of each server's name. Only the dev half was read while changing the",
+        "I changed the rules once after the first published run (see benchmarks/README.md for what and why).",
+        "I split MCPTox in two by a hash of each server's name and read only the dev half while changing the",
         "rules, so the held-out rows are the ones that say how the change generalises. Rows marked as used for",
         "tuning are not independent evidence.",
         "",
@@ -263,9 +263,9 @@ def render_robustness(data: dict[str, Any]) -> str:
     from benchmarks.robustness import FLAGGED, FOOLED, NO_ANSWER, summarise
 
     labels = {
-        "hardened": "Our judge as shipped",
+        "hardened": "My judge as shipped",
         "naive": "Same model, naive prompt (text pasted in, free-text answer)",
-        "static": "Our static rules",
+        "static": "My static rules",
     }
     summary = summarise(data)
     passes = data["settings"]["passes"]
@@ -309,7 +309,7 @@ def render_robustness(data: dict[str, Any]) -> str:
     out += [
         "",
         f"Model {data['settings']['model']}; answers came from: {answered or 'n/a'}. API cost ${data['cost_usd']:.2f}.",
-        "The cases were written by the judge prompt's author. See benchmarks/README.md for what this does and does not show.",
+        "I wrote these cases, and I also wrote the judge prompt. See benchmarks/README.md for what this does and does not show.",
     ]
     if data.get("stopped_early"):
         out += ["", f"Incomplete: {data['stopped_early']}."]
@@ -355,10 +355,10 @@ def render_summary(
         m, (_sb_any, sb_high, _sa_any, sa_high) = by_title[TUNING_GROUPS[-1][0]]
         if n and m:
             out += [
-                f"The static rules were tuned once. On the half of MCPTox that was never looked at while tuning "
+                f"I tuned the static rules once. On the half of MCPTox that I never looked at while tuning "
                 f"({n} poisoned tools), high-severity detection went from {100 * b_high / n:.1f}% to "
                 f"{100 * a_high / n:.1f}%. High-severity false alarms on the signed-in servers went from "
-                f"{100 * sb_high / m:.1f}% to {100 * sa_high / m:.1f}%; those servers were used for the tuning, "
+                f"{100 * sb_high / m:.1f}% to {100 * sa_high / m:.1f}%; I used those servers for the tuning, "
                 "so that second figure is not independent.",
                 "",
             ]

@@ -20,7 +20,7 @@ Checked 2026-11-03.
   likely the test cases with model responses), a `def_tool/` folder and `analysis.ipynb`. The README is
   effectively empty, so the file meanings are inferred from names and still need confirming.
 - **License: none.** GitHub reports no license and there is no LICENSE file. With no license, the default
-  is all rights reserved: we may download and run it for our own evaluation, but should not copy the data
+  is all rights reserved: I may download and run it for my own evaluation, but should not copy the data
   into this repo. Plan: a script that downloads it at benchmark time, plus citing the paper.
 - TODO: ask the authors (open a GitHub issue) to add a license.
 
@@ -53,7 +53,7 @@ Arguments: ...`.
 1. A loader must parse the `Tool: / Description: / Arguments:` text into tool dicts. There is no ready
    `tools/list` JSON.
 2. MCPTox only exercises **description-level** poisoning. It cannot show the value of full-schema
-   scanning (params, enums, defaults), hidden Unicode or rug-pull diffs. Those need our own cases,
+   scanning (params, enums, defaults), hidden Unicode or rug-pull diffs. Those need my own cases,
    as the plan already says.
 3. Negatives come from the clean tool text in the system prompts (about 353 tools).
 4. MCPTox labels measure whether an *agent* was fooled. For a scanner, every one of the 1,312 poisoned
@@ -106,21 +106,17 @@ built by `docs/recon/make_isolated.py` (one attack per otherwise-bland tool).
   instruction-in-enum, instruction-in-default and ask-for-conversation attacks each pass on their own.
 - **Hidden text is not detected at all:** Unicode tag characters, zero-width splitting, bidi override,
   HTML comment, base64 blob and whitespace padding all come back SAFE.
-- **Scope of this result:** YARA analyzer only, default rules. The LLM analyzer and the Cisco AI Defense
-  API analyzer were not run and may catch more. Server instructions were not tested. This is 12 isolated
-  cases on our own fixtures, not a benchmark number.
-- **Windows note:** the `mcp-scanner.exe` shim failed with "Access is denied" right after install, so it
-  was run as `python -c "from mcpscanner.cli import cli_entry_point as m; m()" ...` in the same environment.
+- **Scope of this result:** YARA analyzer only, default rules. I did not run the LLM analyzer or the Cisco AI Defense
+  API analyzer, which may catch more, and I did not test server instructions. This is 12 isolated
+  cases on my own fixtures, not a benchmark number.
+- **Windows note:** the `mcp-scanner.exe` shim failed with "Access is denied" right after install, so I
+  ran it as `python -c "from mcpscanner.cli import cli_entry_point as m; m()" ...` in the same environment.
 
 ### Snyk Agent Scan: blocked by daily cap (2026-11-11)
 
 First run of `uvx snyk-agent-scan@latest fixtures/mcp.json --json` with `SNYK_TOKEN` set failed with
 "Daily usage limit reached for the public version of Agent-Scan". No findings were returned. Per [snyk/agent-scan issue #527](https://github.com/snyk/agent-scan/issues/527),
 this is a per-day analysis budget on the free public API that a personal token does not lift.
-**Decision (2026-11-11): Snyk Agent Scan is dropped from the measured comparison for the whole project.**
-The benchmark compares against Cisco mcp-scanner only. Snyk's documented capabilities are written up
+**Decision (2026-11-11): I dropped Snyk Agent Scan from the measured comparison for the whole project.**
+My benchmark compares against Cisco mcp-scanner only. I wrote up Snyk's documented capabilities
 in [RELATED_TOOLS.md](RELATED_TOOLS.md). The Snyk columns in the tables above stay empty on purpose.
-
-## OWASP MCP Top 10 notes
-
-TODO

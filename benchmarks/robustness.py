@@ -9,7 +9,7 @@ Runs the cases in ``robustness_cases.py`` through three scanners:
 - ``naive``: the same model asked the obvious way. One message holds a short
   instruction and the tool's text pasted in as-is, and the answer is free text that
   is searched for SAFE or MALICIOUS. No fence, no escaping, no schema.
-- ``static``: our static rules, which cannot be persuaded of anything (free).
+- ``static``: the static rules, which cannot be persuaded of anything (free).
 
 A poisoned case counts as *fooled* when the scanner answers that it is clean. An
 answer that is neither (the naive judge writing something else, or a declined

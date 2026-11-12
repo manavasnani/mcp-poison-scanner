@@ -246,8 +246,8 @@ def test_report_counts_a_scanner_only_on_cases_it_answered():
         }
     }  # fmt: skip
     text = report.render(cases, runs, [])
-    assert "| Ours, static rules (any severity) | 100.0% (1/1; 21-100%) |" in text
-    assert "| Ours, static rules (high only) | 0.0% (0/1; 0-79%) |" in text
+    assert "| My scanner, static rules (any severity) | 100.0% (1/1; 21-100%) |" in text
+    assert "| My scanner, static rules (high only) | 0.0% (0/1; 0-79%) |" in text
 
 
 # --- judge robustness ---------------------------------------------------------------------------
@@ -321,7 +321,7 @@ def test_readme_block_is_replaced_between_its_markers(tmp_path):
     assert report.update_readme(block, readme)
     text = readme.read_text(encoding="utf-8")
     assert text.startswith("intro\n") and text.endswith("\noutro\n") and "old numbers" not in text
-    assert "| Ours, static rules (any severity) | not run | not run | not run | not run | 100.0% (1/1) |" in text
+    assert "| My scanner, static rules (any severity) | not run | not run | not run | not run | 100.0% (1/1) |" in text
 
     plain = tmp_path / "plain.md"
     plain.write_text("no markers here\n", encoding="utf-8")

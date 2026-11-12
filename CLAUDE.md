@@ -2,7 +2,7 @@
 
 A fully local scanner that connects to MCP servers, inspects every string they expose to the
 model (tools, params, enums, defaults, prompts, resources), and proves its detection rate with a
-reproducible benchmark. The plan and milestones are in `docs/PLAN.md`, which is kept on the author's
+reproducible benchmark. The plan and milestones are in `docs/PLAN.md`, which I keep on my
 machine and is not in the repository.
 
 ## Commands
@@ -32,7 +32,7 @@ machine and is not in the repository.
 ## Layout
 
 - `src/scanner/collect/`: the only code that touches a server (`snapshot`, `stdio`, `docker`, `http`, `live`).
-  `signin.py` is the browser sign-in: the SDK's `OAuthClientProvider` does the protocol; ours is the
+  `signin.py` is the browser sign-in: the SDK's `OAuthClientProvider` does the protocol; this project adds the
   127.0.0.1 listener, the saved-sign-in file (`SignInStore`) and the address checks
 - `src/scanner/models.py`: `ServerSnapshot` (raw MCP wire-format dicts), `Finding`, `Severity`
 - `src/scanner/normalize.py`: flattens a snapshot into `TextField`s (JSON pointer + text). Parameter names
