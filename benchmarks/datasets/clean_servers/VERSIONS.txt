@@ -1,0 +1,30 @@
+/usr/local/lib
++-- @modelcontextprotocol/server-brave-search@0.6.2
++-- @modelcontextprotocol/server-everything@1.0.0
++-- @modelcontextprotocol/server-filesystem@1.0.0
++-- @modelcontextprotocol/server-github@2025.4.8
++-- @modelcontextprotocol/server-gitlab@2025.4.25
++-- @modelcontextprotocol/server-google-maps@0.6.2
++-- @modelcontextprotocol/server-memory@1.0.0
++-- @modelcontextprotocol/server-postgres@0.6.2
++-- @modelcontextprotocol/server-puppeteer@2025.5.12
++-- @modelcontextprotocol/server-redis@2025.4.25
++-- @modelcontextprotocol/server-sequential-thinking@1.0.0
++-- @modelcontextprotocol/server-slack@2025.4.25
++-- @notionhq/notion-mcp-server@2.6.1
++-- @playwright/mcp@0.0.85
++-- @upstash/context7-mcp@4.6.0
++-- corepack@0.36.0
++-- exa-mcp-server@3.4.3
++-- firecrawl-mcp@3.39.0
++-- npm@10.9.9
+`-- tavily-mcp@0.2.22
+
+mcp-server-fetch v2026.11.11
+- mcp-server-fetch
+mcp-server-git v2026.11.11
+- mcp-server-git
+mcp-server-sqlite v2025.4.25
+- mcp-server-sqlite
+mcp-server-time v2026.11.11
+- mcp-server-time

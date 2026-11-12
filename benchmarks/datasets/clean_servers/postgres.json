@@ -1,0 +1,31 @@
+{
+  "format_version": 1,
+  "server_name": "postgres",
+  "source": "docker",
+  "server_info": {
+    "name": "example-servers/postgres",
+    "version": "0.1.0"
+  },
+  "instructions": null,
+  "tools": [
+    {
+      "name": "query",
+      "description": "Run a read-only SQL query",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sql": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ],
+  "prompts": [],
+  "resources": [],
+  "resource_templates": [],
+  "errors": [
+    "resources/list: MCPError: ",
+    "resources/templates/list: MCPError: Method not found"
+  ]
+}
