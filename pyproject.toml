@@ -3,6 +3,8 @@ name = "mcp-poison-scanner"
 version = "0.1.0"
 description = "Local scanner for poisoned MCP server metadata, with a reproducible benchmark."
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
     { name = "Manav Asnani" }
 ]

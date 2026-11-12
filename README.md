@@ -293,3 +293,7 @@ How often it can still be talked into a wrong verdict is measured in the results
   measured here, because its free public API has a daily usage cap that blocked our test scan.
 
 See [docs/RELATED_TOOLS.md](docs/RELATED_TOOLS.md) for what each one does.
+
+## License
+
+[MIT](LICENSE).
