@@ -24,3 +24,6 @@ jobs:
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - run: uv run pytest
+      # The installed command, the way someone without a clone runs it.
+      - run: uvx --from . mcp-poison-scanner scan -s fixtures/snapshots/clean.json
+      - run: uv run python scripts/package_skill.py

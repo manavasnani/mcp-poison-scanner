@@ -54,6 +54,9 @@ machine and is not in the repository.
 - `benchmarks/`: `cases.py` (dataset loaders, the MCPTox dev/held-out split), `scanners.py` (adapters, answer cache), `run.py`, `report.py`,
   `robustness_cases.py` and `robustness.py` (attacks aimed at the judge itself).
   Results in `benchmarks/results/`; `RESULTS.md` there is generated, never hand-edited
+- `skill/mcp-poison-scanner/SKILL.md`: the agent skill listed on marketplaces. Text only, no code; it tells an
+  agent to run the scanner with `uvx`. `tests/test_skill.py` fails if it names a flag, subcommand or rule the
+  CLI does not have, or if its version differs from `pyproject.toml`. `scripts/package_skill.py` zips it into `dist/`
 - `fixtures/servers/`: clean, poisoned, rugpull_v1/v2 fixture servers. `poisoned.POISONED_LOCATIONS` lists each attack
 - `fixtures/snapshots/`: saved JSON of each fixture, for offline rule tests
 

@@ -94,6 +94,22 @@ Summary: 6 findings (4 high, 2 medium) across 1 server.
 
 Needs Python 3.12 and [uv](https://docs.astral.sh/uv/).
 
+To run it without cloning this repository, use the `mcp-poison-scanner` command:
+
+```sh
+uvx --from git+https://github.com/manavasnani/mcp-poison-scanner@v0.1.0 mcp-poison-scanner scan -s server.json
+uv tool install git+https://github.com/manavasnani/mcp-poison-scanner@v0.1.0     # or install the command once
+mcp-poison-scanner discover
+```
+
+The `@v0.1.0` pins the tagged release; swap in a newer tag when there is one. `mcp-poison-scanner` and
+`python -m scanner.cli` are the same program, so every example below works
+with either. On my Windows machine a security setting refuses to start the freshly installed
+`mcp-poison-scanner.exe` ("Access is denied"); if you hit that, this form works:
+`uvx --from git+https://github.com/manavasnani/mcp-poison-scanner@v0.1.0 python -m scanner.cli ...`.
+
+From a clone:
+
 ```sh
 uv sync
 uv run python -m scanner.cli scan -s fixtures/snapshots/poisoned.json     # a saved tools/list snapshot
@@ -167,6 +183,30 @@ does not count against `--timeout`.
 - **Limits.** The service must let a new app register itself (most MCP servers do). One that only
   accepts apps its owner approved in advance cannot be signed in to; the scanner says so. The automated
   tests use a made-up service that runs in memory; by hand I have run it against Notion, Apify and Apollo.
+
+## Use as an agent skill
+
+The folder [skill/mcp-poison-scanner](skill/mcp-poison-scanner) is a `SKILL.md` skill: instructions
+that tell an AI coding agent when to run the scanner, which commands to use, and how to explain the
+findings. It holds no code. The agent installs and runs the scanner from this repository with the
+`uvx` command above, so it needs Python 3.12, uv and network access to GitHub.
+
+- **Agensi marketplace:** listing link to be added.
+- **Claude Code, from this repository:** copy the folder into your skills folder, then start a new
+  session.
+
+  ```sh
+  git clone https://github.com/manavasnani/mcp-poison-scanner
+  mkdir -p ~/.claude/skills .claude/skills
+  cp -r mcp-poison-scanner/skill/mcp-poison-scanner ~/.claude/skills/        # for all your projects
+  cp -r mcp-poison-scanner/skill/mcp-poison-scanner .claude/skills/          # or for one project
+  ```
+
+The skill tells the agent to use the offline rules by default, to ask before using `--judge` (it
+sends metadata to the Claude API and costs money), and not to enable a server that gets a high finding.
+
+`uv run python scripts/package_skill.py` zips the folder into `dist/mcp-poison-scanner-skill.zip` for
+upload.
 
 ## What it checks
 
