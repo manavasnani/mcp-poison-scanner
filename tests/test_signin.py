@@ -136,19 +136,28 @@ class Browser:
     def __init__(self, answer="code=the-code", first_try_wrong_state=False, comes_back=True):
         self.answer, self.first_try_wrong_state, self.comes_back = answer, first_try_wrong_state, comes_back
         self.opened: list[str] = []
-        self.pages: list[tuple[int, str]] = []
+        self._pages: list[tuple[int, str]] = []
+        self._thread: threading.Thread | None = None
 
     def __call__(self, url: str) -> None:
         self.opened.append(url)
         if self.comes_back:
-            threading.Thread(target=self._return, args=(url,), daemon=True).start()
+            self._thread = threading.Thread(target=self._return, args=(url,), daemon=True)
+            self._thread.start()
+
+    @property
+    def pages(self) -> list[tuple[int, str]]:
+        """What the browser was shown. Waits for it to finish reading: the scan can return first."""
+        if self._thread is not None:
+            self._thread.join(timeout=10)
+        return self._pages
 
     def _get(self, address: str) -> None:
         try:
             with urllib.request.urlopen(address, timeout=10) as response:  # noqa: S310 - our own 127.0.0.1 listener
-                self.pages.append((response.status, response.read().decode()))
+                self._pages.append((response.status, response.read().decode()))
         except urllib.error.HTTPError as exc:
-            self.pages.append((exc.code, exc.read().decode()))
+            self._pages.append((exc.code, exc.read().decode()))
 
     def _return(self, url: str) -> None:
         query = {k: v[0] for k, v in parse_qs(urlsplit(url).query).items()}
